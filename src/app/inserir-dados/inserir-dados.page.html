@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inserir Novos Dados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+ 
+
+<ion-content style="color:white">
+  
+  <ion-card-content>
+       
+    <form #form="ngForm" (ngSubmit)="logForm(form)">
+  
+  <ion-list>   
+  <ion-item>
+          <ion-select placeholder="singer" [(ngModel)]="todo.singer" (ionChange)="gettingAlbuns()" name="singer" ngControl="singer">
+            <ion-select-option *ngFor="let singer of singers"  [value]="singer.id" >{{ singer.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+      <ion-select placeholder="album" [(ngModel)]="todo.album" name="album" ngControl="album" [disabled]="!todo.singer">
+        <ion-select-option *ngFor="let album of albuns"  [value]="album.id" >{{ album.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="todo.name" name="name" ngControl="name" placeholder="Nome da música"></ion-input>
+    </ion-item>
+
+    
+    
+    <!-- <ion-item>
+      <ion-label position="floating">Imagem</ion-label>
+      <ion-input type="file" placeholder="Imagem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Audio</ion-label>
+      <ion-input type="file" placeholder="Audio"></ion-input>
+    </ion-item> -->
+    <ion-item>     
+      <ion-button type="submit" expand="block" 
+      >Enviar</ion-button
+    >
+          
+    </ion-item>
+  </ion-list>
+  </form>
+  </ion-card-content>
+
+</ion-content>

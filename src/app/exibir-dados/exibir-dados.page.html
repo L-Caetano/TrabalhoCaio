@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Álbuns no sistema</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let dado of this.dados">
+    <ion-card-header>
+      <ion-card-subtitle>{{ dado.album.singer.name }} </ion-card-subtitle>
+      <ion-card-title>{{ dado.album.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="dado.songs.length > 0">  
+        Songs:
+     <div *ngFor="let song of dado.songs">
+            {{ song.name }}
+
+     </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
