@@ -8,8 +8,15 @@ import {DadosProviderComponent} from "../dados-provider/dados-provider.component
 export class InserirDadosAlbumPage implements OnInit {
 
   constructor( private providerAlbum: DadosProviderComponent,) { }
-
+  public singers
   ngOnInit() {
+    this.providerAlbum.getAllSingers().then((response:any) => {
+      console.log(response)
+      this.singers = response
+      console.log(this.singers)
+    }).catch((error) => {
+     
+    });
   }
   logForm(form) {
     console.log(form.value)

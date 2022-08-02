@@ -78,9 +78,10 @@ export class DadosProviderComponent  {
         });
   });
   }
-  getSongById(){
+  getSongById(id){
+    console.log('a',id)
     return new Promise((resolve, reject) => {
-      this.http.get(this.BASE + "getAllAlbum/")
+      this.http.get(this.BASE + "song/"+id)
         .subscribe((result) => {
             resolve(result);
           },

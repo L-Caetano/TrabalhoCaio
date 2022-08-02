@@ -8,12 +8,15 @@
   <ion-card-content>
     <form #form="ngForm" (ngSubmit)="logForm(form)">
   <ion-list>
+       <ion-item>
+      <ion-select placeholder="singer" [(ngModel)]="todo.singer" name="singer" ngControl="singer">
+        <ion-select-option *ngFor="let singer of singers"  [value]="singer.id" >{{ singer.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-item>
       <ion-input type="text" [(ngModel)]="todo.name" name="name" ngControl="name" placeholder="Nome do album"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="todo.singer" name="singer" ngControl="singer" placeholder="Nome do artista"></ion-input>
-    </ion-item>
+ 
     <!-- <ion-item>
       <ion-label position="floating">Imagem</ion-label>
       <ion-input type="file" placeholder="Imagem"></ion-input>

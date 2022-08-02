@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {DadosProviderComponent} from "../dados-provider/dados-provider.component"
 @Component({
   selector: 'app-exibir-dados',
@@ -8,7 +8,7 @@ import {DadosProviderComponent} from "../dados-provider/dados-provider.component
 })
 export class ExibirDadosPage implements OnInit {
 public dados 
-  constructor(private providerAlbum: DadosProviderComponent,) { }
+  constructor(private providerAlbum: DadosProviderComponent,public router:Router) { }
 
   ngOnInit() {
     //console.log(form.value)
