@@ -42,6 +42,19 @@ export class DadosProviderComponent  {
           });
     });
   }
+
+  putSong(data,id){
+    console.log(data)
+    return new Promise((resolve, reject) => {
+    this.http.patch(this.BASE + "song/"+id,data)
+      .subscribe((result) => {
+          resolve(result);
+        },
+        (error) => {
+          reject(error);
+        });
+  });
+  }
   postSong(data){
     console.log(data)
     return new Promise((resolve, reject) => {
@@ -53,6 +66,17 @@ export class DadosProviderComponent  {
           reject(error);
         });
   });
+  }
+  deleteSong(id){
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.BASE + "song/"+id)
+        .subscribe((result) => {
+            resolve(result);
+          },
+          (error) => {
+            reject(error);
+          });
+    });
   }
   getAllAlbuns(){
     return new Promise((resolve, reject) => {

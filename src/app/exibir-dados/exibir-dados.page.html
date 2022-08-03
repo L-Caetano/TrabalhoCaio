@@ -14,7 +14,7 @@
     <ion-card-content *ngIf="dado.songs.length > 0" >  
      
      <div *ngFor="let song of dado.songs" class="ion-float-left" >
-            {{ song.name }} {{ song.id}}  <ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: song.id } ]);"></ion-icon> &nbsp;
+            {{ song.name }}<ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: song.id } ]);"></ion-icon>   <ion-icon name="trash" (click)="presentAlert(song.id)"></ion-icon> &nbsp;
      </div>
     </ion-card-content>
   </ion-card>

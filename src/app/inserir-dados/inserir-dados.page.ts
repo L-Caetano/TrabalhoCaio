@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DadosProviderComponent} from "../dados-provider/dados-provider.component"
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-inserir-dados',
   templateUrl: './inserir-dados.page.html',
@@ -13,7 +13,7 @@ export class InserirDadosPage implements OnInit {
       singer: '',
       album: '',
     };
-  constructor(  private providerAlbum: DadosProviderComponent,private route: ActivatedRoute) { }
+  constructor(  private providerAlbum: DadosProviderComponent,private route: ActivatedRoute,private alertController: AlertController) { }
   public dadosForm
   musicaId: string;
   public singers
@@ -74,11 +74,46 @@ export class InserirDadosPage implements OnInit {
   }
   logForm(form) {
     console.log(form.value)
+    if(!this.musicaId){
+        //console.log(values)
      this.providerAlbum.postSong(form.value).then((response) => {
-
+     // console.log("adwqdqwdqw",response)
+      this.presentAlert(true)
      }).catch((error) => {
-      
+     // console.log("313adwqdqwdqw",error)
+      this.presentAlert(false)
      });
+    }else{
+     //console.log(values)
+     this.providerAlbum.putSong(form.value,this.musicaId).then((response) => {
+      // console.log("adwqdqwdqw",response)
+       this.presentAlert(true)
+      }).catch((error) => {
+       console.log("313adwqdqwdqw",error)
+       this.presentAlert(false)
+      });
+    }
+  }
+
+
+  async presentAlert(bool) {
+
+   let messageTxt = ""
+   if(bool == true && this.musicaId){
+    messageTxt = "Música editada!"
+   }
+   else if(bool == true){
+    messageTxt = "Música adicionada!"
+   }else{
+    messageTxt = "Ocorreu um erro ao adiconar música"
+   }
+    const alert = await this.alertController.create({
+      header: 'Requisição',
+      message: messageTxt,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
  
 }
