@@ -18,7 +18,17 @@ export class DadosProviderComponent  {
         });
   });
   }
-
+  putAlbum(data,id){
+    return new Promise((resolve, reject) => {
+    this.http.patch(this.BASE + "album/"+id,data)
+      .subscribe((result) => {
+          resolve(result);
+        },
+        (error) => {
+          reject(error);
+        });
+  });
+  }
   postSinger(data){
     console.log(data)
     return new Promise((resolve, reject) => {
@@ -128,6 +138,18 @@ export class DadosProviderComponent  {
     console.log('a',id)
     return new Promise((resolve, reject) => {
       this.http.get(this.BASE + "song/"+id)
+        .subscribe((result) => {
+            resolve(result);
+          },
+          (error) => {
+            reject(error);
+          });
+    });
+  }
+  getAlbumById(id){
+    console.log('a',id)
+    return new Promise((resolve, reject) => {
+      this.http.get(this.BASE + "album/"+id)
         .subscribe((result) => {
             resolve(result);
           },

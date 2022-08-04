@@ -55,7 +55,7 @@ public dados
   }
   async deletarAlbum(id) {
     const alert = await this.alertController.create({
-      header: 'Tem certeza que deseja deletar essa música?!',
+      header: 'Tem certeza que deseja deletar esse album?!',
       buttons: [
         {
           text: 'Cancelar',
@@ -86,7 +86,7 @@ public dados
   }
   async deleteSinger(id) {
     const alert = await this.alertController.create({
-      header: 'Tem certeza que deseja deletar essa música?!',
+      header: 'Tem certeza que deseja deletar esse artista?!',
       buttons: [
         {
           text: 'Cancelar',
