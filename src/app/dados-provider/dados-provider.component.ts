@@ -78,6 +78,28 @@ export class DadosProviderComponent  {
           });
     });
   }
+  deleteSinger(id){
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.BASE + "singer/"+id)
+        .subscribe((result) => {
+            resolve(result);
+          },
+          (error) => {
+            reject(error);
+          });
+    });
+  }
+  deleteAlbum(id){
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.BASE + "album/"+id)
+        .subscribe((result) => {
+            resolve(result);
+          },
+          (error) => {
+            reject(error);
+          });
+    });
+  }
   getAllAlbuns(){
     return new Promise((resolve, reject) => {
     this.http.get(this.BASE + "getAllAlbum/")

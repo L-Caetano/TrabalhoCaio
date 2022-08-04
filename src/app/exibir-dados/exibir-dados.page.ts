@@ -22,17 +22,17 @@ public dados
      
     });
   }
-  async presentAlert(id) {
+  async deletarMusica(id) {
     const alert = await this.alertController.create({
-      header: 'Alert!',
+      header: 'Tem certeza que deseja deletar essa música?!',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel',
           handler: () => { }
         },
         {
-          text: 'OK',
+          text: 'Sim',
           role: 'confirm',
           handler: () => { 
             this.providerAlbum.deleteSong(id).then((response) => {
@@ -53,5 +53,66 @@ public dados
     const { role } = await alert.onDidDismiss();
     this.roleMessage = `Dismissed with role: ${role}`;
   }
+  async deletarAlbum(id) {
+    const alert = await this.alertController.create({
+      header: 'Tem certeza que deseja deletar essa música?!',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => { }
+        },
+        {
+          text: 'Sim',
+          role: 'confirm',
+          handler: () => { 
+            this.providerAlbum.deleteAlbum(id).then((response) => {
+                this.providerAlbum.getAllAlbuns().then((response) => {
+                  this.dados = response;
+                })
+            }).catch((error) => {
+             
+            });
+           
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `Dismissed with role: ${role}`;
+  }
+  async deleteSinger(id) {
+    const alert = await this.alertController.create({
+      header: 'Tem certeza que deseja deletar essa música?!',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => { }
+        },
+        {
+          text: 'Sim',
+          role: 'confirm',
+          handler: () => { 
+            this.providerAlbum.deleteSinger(id).then((response) => {
+                this.providerAlbum.getAllAlbuns().then((response) => {
+                  this.dados = response;
+                })
+            }).catch((error) => {
+             
+            });
+           
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `Dismissed with role: ${role}`;
+  }
 }

@@ -7,14 +7,14 @@
 <ion-content>
   <ion-card *ngFor="let dado of this.dados">
     <ion-card-header>
-      <ion-card-title >{{ dado.album.singer.name }} - {{ dado.album.name }}</ion-card-title>
+      <ion-card-title >{{ dado.album.singer.name }} <ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: dado.album.singer.id } ]);"></ion-icon>   <ion-icon name="trash" (click)="deleteSinger(dado.album.singer.id)"></ion-icon> &nbsp; - {{ dado.album.name }} <ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: dado.album.id } ]);"></ion-icon>   <ion-icon name="trash" (click)="deletarAlbum(dado.album.id)"></ion-icon> &nbsp;</ion-card-title>
           <ion-card-subtitle  *ngIf="dado.songs.length > 0"> Músicas: </ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content *ngIf="dado.songs.length > 0" >  
      
      <div *ngFor="let song of dado.songs" class="ion-float-left" >
-            {{ song.name }}<ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: song.id } ]);"></ion-icon>   <ion-icon name="trash" (click)="presentAlert(song.id)"></ion-icon> &nbsp;
+            {{ song.name }}<ion-icon name="create" (click)="router.navigate(['/inserir-dados',  { musica: song.id } ]);"></ion-icon>   <ion-icon name="trash" (click)="deletarMusica(song.id)"></ion-icon> &nbsp;
      </div>
     </ion-card-content>
   </ion-card>
