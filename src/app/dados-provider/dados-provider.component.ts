@@ -65,6 +65,18 @@ export class DadosProviderComponent  {
         });
   });
   }
+  putSinger(data,id){
+    console.log(data)
+    return new Promise((resolve, reject) => {
+    this.http.patch(this.BASE + "singer/"+id,data)
+      .subscribe((result) => {
+          resolve(result);
+        },
+        (error) => {
+          reject(error);
+        });
+  });
+  }
   postSong(data){
     console.log(data)
     return new Promise((resolve, reject) => {
@@ -138,6 +150,18 @@ export class DadosProviderComponent  {
     console.log('a',id)
     return new Promise((resolve, reject) => {
       this.http.get(this.BASE + "song/"+id)
+        .subscribe((result) => {
+            resolve(result);
+          },
+          (error) => {
+            reject(error);
+          });
+    });
+  }
+  getSingerById(id){
+    console.log('a',id)
+    return new Promise((resolve, reject) => {
+      this.http.get(this.BASE + "singer/"+id)
         .subscribe((result) => {
             resolve(result);
           },

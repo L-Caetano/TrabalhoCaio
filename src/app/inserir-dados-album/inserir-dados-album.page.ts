@@ -16,23 +16,22 @@ export class InserirDadosAlbumPage implements OnInit {
   ngOnInit() {
     this.route.params
     .subscribe(params => {
-      console.log("AAAAAAAAAAA",params); // { orderby: "price" }
+      //console.log("AAAAAAAAAAA",params); // { orderby: "price" }
       this.albumId = params.album;
-      console.log(params); // price
+      //console.log(params); // price
     }
   );
   if(this.albumId){
     this.providerAlbum.getAlbumById(this.albumId).then((response: any) => {
-      console.log(response)
+     // console.log(response)
       this.todo.name = response.name
-
       this.singerId = response.singer.id
     })
   }
     this.providerAlbum.getAllSingers().then((response:any) => {
-      console.log(response)
+      //console.log(response)
       this.singers = response
-      console.log(this.singers)
+      //console.log(this.singers)
       if(this.singerId){
         this.todo.singer = this.singerId
       }
@@ -41,7 +40,7 @@ export class InserirDadosAlbumPage implements OnInit {
     });
   }
   logForm(form) {
-    console.log(form.value)
+    //console.log(form.value)
     if(!this.albumId){
          this.providerAlbum.postAlbum(form.value).then((response) => {
       this.presentAlert(true)
@@ -63,6 +62,9 @@ export class InserirDadosAlbumPage implements OnInit {
     };
     async presentAlert(bool) {
       let messageTxt = ""
+      if(this.albumId){
+        messageTxt = "Album editado!"
+      }else 
       if(bool == true){
        messageTxt = "Album adicionada!"
       }else{
